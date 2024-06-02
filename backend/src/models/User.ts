@@ -6,7 +6,6 @@ export const User = sequelize.define("User", {
     userId: {
         type: DataTypes.UUID,
         primaryKey: true,
-        autoIncrement:true
     },
     userName: {
         type: DataTypes.STRING,
@@ -26,6 +25,6 @@ export const User = sequelize.define("User", {
     videoOfCreator:DataTypes.UUID
 })
 
-User.hasMany(Video,{as:"videoOfCreator",foreignKey:'videoId'})
-Video.belongsTo(User,{as:"creatorOfVideo",foreignKey:'userId'})
+User.hasMany(Video)
+Video.belongsTo(User)
 sequelize.sync({alter:true})
