@@ -23,5 +23,4 @@ export const Video = sequelize.define("User", {
     }
 })
 
-
-sequelize.sync({alter:true})
+Video.sync()

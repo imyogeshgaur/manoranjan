@@ -10,6 +10,7 @@ userRouter.post("/login",async(req:Request,res:Response)=>{
         console.log("Global Error :",error);
     }
 })
+
 userRouter.post("/register",async(req:Request,res:Response)=>{
     try {
         const userController = new UserController(req,res);
@@ -17,6 +18,24 @@ userRouter.post("/register",async(req:Request,res:Response)=>{
     } catch (error) {
         console.log("Global Error :",error);
 
+    }
+})
+
+userRouter.post("/forgetPassword",async(req:Request,res:Response)=>{
+    try {
+        const userController = new UserController(req,res);
+        await userController.forgetPassword();
+    } catch (error) {
+        console.log("Global Error :",error);
+    }
+})
+
+userRouter.put("/resetPassword/:userId",async(req:Request,res:Response)=>{
+    try {
+        const userController = new UserController(req,res);
+        await userController.resetPassword();
+    } catch (error) {
+        console.log("Global Error :",error);
     }
 })
 

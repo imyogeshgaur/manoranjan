@@ -27,4 +27,4 @@ export const User = sequelize.define("User", {
 
 User.hasMany(Video)
 Video.belongsTo(User)
-sequelize.sync({alter:true})
+User.sync()

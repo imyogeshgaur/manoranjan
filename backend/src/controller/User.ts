@@ -39,6 +39,28 @@ class UserController {
             return this.res.send({ message: "Internal Server Error !!!" })
         }
     }
+
+    async forgetPassword() {
+        try {
+            const response = await this.service.forgetPassword(this.req.body.emailOfUser);
+            if (response) return this.res.send({ message: "Email Sent Successfully !!!" })
+            else return this.res.send({ message: "Some Error Occurred !!!" })
+        } catch (error) {
+            console.log("Error occurred at forget password controller : ", error);
+            return this.res.send({ message: "Internal Server Error !!!" })
+        }
+    }
+
+    async resetPassword() {
+        try {
+            const response = await this.service.resetPassword(this.req.params.userId, this.req.body.password);
+            if (response) return this.res.send({ message: "Password Reset Successfully !!!" })
+            else return this.res.send({ message: "Some error occurred !!!" })
+        } catch (error) {
+            console.log("Error occurred at forget password controller : ", error);
+            return this.res.send({ message: "Internal Server Error !!!" })
+        }
+    }
 }
 
 export default UserController;
