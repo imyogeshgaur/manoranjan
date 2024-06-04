@@ -68,10 +68,10 @@ class UserService {
             })
             const isUserExistWithUsername = await this.userModel.findOne({
                 where: {
-                    emailOfUser: data.userName
+                    userName: data.userName
                 }
             })
-            if (isUserExistWithEmail || isUserExistWithUsername) {
+            if (isUserExistWithEmail || isUserExistWithUsername){
                 return 0;
             } else {
                 const password = data.password;

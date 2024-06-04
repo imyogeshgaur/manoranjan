@@ -10,7 +10,7 @@ connectToDb()
 app.use(json())
 app.use(urlencoded({extended:true}))
 app.use(cors({
-    origin:"http://localhost:5134",
+    origin:"http://localhost:5173",
 }))
 
 app.use("/api/user",userRouter);
