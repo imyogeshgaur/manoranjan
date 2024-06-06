@@ -1,21 +1,13 @@
 import { DataTypes } from "sequelize"
 import { sequelize } from "../database/db.config"
-import { User } from "./User"
 
-export const Video = sequelize.define("User", {
+export const Video = sequelize.define("Video", {
     videoId: {
         type: DataTypes.UUID,
         primaryKey: true,
     },
-    titleOfVideo: {
-        type: DataTypes.STRING,
-        unique: true
-    },
-    descriptionOfVideo: {
-        type: DataTypes.STRING,
-        unique: true,
-        allowNull: false
-    },
+    titleOfVideo: DataTypes.STRING,
+    descriptionOfVideo: DataTypes.STRING,
     urlOfVideo: DataTypes.STRING,
     creatorOfVideo: {
         type: DataTypes.UUID,
