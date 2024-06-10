@@ -1,6 +1,7 @@
 import { Video } from "../models/Video";
 import decodeUser from "../utils/decodeUser"
-import { v4 } from "uuid";
+import { unlinkSync } from "fs"
+import { join } from "path"
 class VideoService {
 
     private videoModel: any
@@ -13,9 +14,7 @@ class VideoService {
             const decodedVal: any = decodeUser(token);
             const creatorOfVideo = decodedVal.payload.userId;
             const urlOfVideo = process.env.VIDEO_FILE_GET_URL as string + file;
-            const videoId = v4();
             const newVideo = await this.videoModel.create({
-                videoId,
                 ...body,
                 creatorOfVideo,
                 urlOfVideo
@@ -29,6 +28,7 @@ class VideoService {
         try {
             const allVideos = await Video.findAll({
                 attributes: [
+                    'videoId',
                     'titleOfVideo',
                     'descriptionOfVideo',
                     'urlOfVideo'
@@ -69,9 +69,10 @@ class VideoService {
         }
     }
 
-    async deleteVideo(videoId:any){
+    async deleteVideo(videoId: any) {
         try {
-            const response = await Video.destroy(
+            unlinkSync(join(process.cwd(), "/src/uploads"))
+            const response: any = await Video.destroy(
                 { where: { videoId } }
             );
             if (response[0]) return 1;
