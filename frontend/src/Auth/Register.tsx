@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import TextInput from "../Components/TextInput";
 import CustomLink from "../Components/CustomLink";
 import callAPIOnButtonClick from "../api/CallAPI";
-import { ToastContainer, toast } from "react-toastify";
 
 const Register = () => {
   const navigate: any = useNavigate();
@@ -66,29 +65,30 @@ const Register = () => {
   };
 
   return (
-    <div className="card">
-      <h2>Register</h2>
-      <ToastContainer />
-      {propsArray.map((val: any, index: any) => (
-        <TextInput
-          key={index}
-          type={val.type}
-          name={val.name}
-          placeholder={val.placeholder}
-          value={val.value}
-          onChange={val.onChange}
-        />
-      ))}
-      <button type="submit" onClick={callRegisterApiFunction}>
-        Submit
-      </button>
+    <div className="card-outer">
+      <div className="card">
+        <h2>Register</h2>
+        {propsArray.map((val: any, index: any) => (
+          <TextInput
+            key={index}
+            type={val.type}
+            name={val.name}
+            placeholder={val.placeholder}
+            value={val.value}
+            onChange={val.onChange}
+          />
+        ))}
+        <button type="submit" onClick={callRegisterApiFunction}>
+          Submit
+        </button>
 
-      <CustomLink
-        text={"Already registered?"}
-        linkText={"Login Here"}
-        navigateTo={"/"}
-        className={"linkStyle"}
-      />
+        <CustomLink
+          text={"Already registered?"}
+          linkText={"Login Here"}
+          navigateTo={"/"}
+          className={"linkStyle"}
+        />
+      </div>
     </div>
   );
 };
