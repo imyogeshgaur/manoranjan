@@ -4,6 +4,10 @@ import { sign } from "jsonwebtoken"
 import { v4 } from "uuid"
 import { passwordResetMail } from "../utils/sendEmail";
 import { forgetPasswordTemplate } from "../template/forgotPassword";
+import {resolve} from "path";
+import {config} from "dotenv";
+config({path:resolve("./src/.env")})
+
 class UserService {
 
     private userModel: any;
@@ -71,7 +75,7 @@ class UserService {
                     userName: data.userName
                 }
             })
-            if (isUserExistWithEmail || isUserExistWithUsername){
+            if (isUserExistWithEmail || isUserExistWithUsername) {
                 return 0;
             } else {
                 const password = data.password;
@@ -106,11 +110,11 @@ class UserService {
             const response = await User.update(
                 { password: hashedPassword },
                 { where: { userId } }
-                );
-            if(response[0]) return 1;
+            );
+            if (response[0]) return 1;
             else return 0;
         } catch (error) {
-            console.log("Error occurred in login service: ", error)
+            console.log("Error occurred in resetPassword service: ", error)
         }
     }
 }

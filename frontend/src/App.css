@@ -1,75 +1,169 @@
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
-  
-  .card {
-    background-color: rgb(185, 185, 185);
-    border-radius: 15px;
-    padding: 30px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    text-align: center;
-  }
-  
-  .card h2 {
-    margin-bottom: 20px;
-  }
-  
-  .card input {
-    width: calc(100% - 20px);
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    outline: none;
-  }
-  
-  .card button {
-    width: calc(100% - 20px);
-    padding: 10px;
-    margin: 20px 0;
-    background-color: #1e2496;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .card button:hover {
-    background-color: #151a72;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.card-outer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
 
-  .linkStyle{
-    color: #1e2496;
-    text-decoration: none;
-    display: 'block',;
-    margin-top: '20px';
-    padding: 10px;
-    margin: 20px 0;
-  }
-  .backLinkStyle{
-    color: #1e2496;
-    text-decoration: none;
-    display: 'block',;
-    margin-top: '20px';
-    padding: 10px;
-    margin: 20px 0;
-    font-size: large;
-  }
+.card {
+  background-color: rgb(185, 185, 185);
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+}
 
-  .forgetPasswordLinkStyle{
-    color: #1e2496;
-    text-decoration: none;
-    display: 'block',;
-    margin-top: '20px';
-    padding: 10px;
-    margin-left: 9.99rem;
-    font-size: large;
-  }
-  
+.card h2 {
+  margin-bottom: 20px;
+}
+
+.card input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.card button {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 20px 0;
+  background-color: #1e2496;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.card button:hover {
+  background-color: #151a72;
+}
+
+.linkStyle {
+  color: #1e2496;
+  text-decoration: none;
+  display: "block";
+  margin-top: "20px";
+  padding: 10px;
+  margin: 20px 0;
+}
+.backLinkStyle {
+  color: #1e2496;
+  text-decoration: none;
+  display: "block";
+  margin-top: "20px";
+  padding: 10px;
+  margin: 20px 0;
+  font-size: large;
+}
+
+.forgetPasswordLinkStyle {
+  color: #1e2496;
+  text-decoration: none;
+  display: "block";
+  margin-top: "20px";
+  padding: 10px;
+  margin-left: 9.99rem;
+  font-size: large;
+}
+
+.videoCard {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 10px;
+  width: calc(33% - 20px);
+  background-color: rgb(185, 185, 185);
+  padding: .6rem;
+}
+
+.videoPlayer {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(185, 185, 185);
+  padding: 10px;
+}
+
+.navbar-center {
+  flex-grow: 1;
+  text-align: center;
+  font-weight: bold;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  width: 90px;
+  position: absolute;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  padding: 1rem 1rem;
+
+}
+
+.dropdown-item {
+  padding: 5px;
+  background-color: white;
+  border: none;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+.edit-button{
+  padding: .8rem .8rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  background-color: rgb(103, 158, 206);
+  outline: none;
+  border:none;
+  border-radius: .5rem;
+}
+
+.delete-button{
+  padding: .8rem .8rem;
+  margin-left: 1rem;
+  background-color: rgb(219, 150, 150);
+  outline: none;
+  border:none;
+  border-radius: .5rem;
+}
+
+input::file-selector-button {
+  display: none;
+}
+
+textarea{
+  width: 90%;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}

@@ -8,28 +8,29 @@ const ForgetPassword = () => {
   const navigate = useNavigate();
   const [emailOfUser, setEmailOfUser] = useState("");
 
-  const callForgotPasswordApiFunction = async()=>{
+  const callForgotPasswordApiFunction = async () => {
     try {
       const response = await callAPIOnButtonClick(
         "POST",
         "http://localhost:4000/api/user/forgetPassword",
         {
-          emailOfUser
+          emailOfUser,
         }
       );
-      if(response?.dataFromBackend.message=="Email Sent Successfully !!!"){
-        navigate("/")
-      }else{
-        console.log(response?.dataFromBackend.message)
+      if (response?.dataFromBackend.message == "Email Sent Successfully !!!") {
+        navigate("/");
+      } else {
+        console.log(response?.dataFromBackend.message);
       }
     } catch (error) {
       console.log("Error occurred at forgot password frontend: ", error);
     }
-  }
-  
+  };
+
   return (
-    <div className="card">
-      <h2>Forget Password</h2>
+    <div className="card-outer">
+      <div className="card">
+        <h2>Forget Password</h2>
         <TextInput
           placeholder={"Enter Email"}
           type="email"
@@ -37,13 +38,16 @@ const ForgetPassword = () => {
           onChange={(e: any) => setEmailOfUser(e.target.value)}
         />
 
-        <button type="submit" onClick={callForgotPasswordApiFunction}>Submit</button>
+        <button type="submit" onClick={callForgotPasswordApiFunction}>
+          Submit
+        </button>
 
         <CustomLink
           className={"backLinkStyle"}
           navigateTo={"/"}
           linkText={"Back to login"}
         />
+      </div>
     </div>
   );
 };

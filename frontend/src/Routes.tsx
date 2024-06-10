@@ -5,6 +5,8 @@ const RegisterPage = lazy(() => import("./Auth/Register"));
 const ForgetPasswordPage = lazy(() => import("./Auth/ForgetPassword"));
 const ResetPasswordPage = lazy(() => import("./Auth/ResetPassword"));
 const HomePage = lazy(() => import("./Home/AllVideo"));
+const AddVideoPage = lazy(() => import("./Home/AddVideo"));
+const EditVideoPage = lazy(() => import("./Home/EditVideo"));
 
 const routes = [
   { path: "/", element: <LoginPage /> },
@@ -12,6 +14,8 @@ const routes = [
   { path: "/forgetPassword", element: <ForgetPasswordPage /> },
   { path: "/resetPassword/:userId", element: <ResetPasswordPage /> },
   { path: "/home", element: <HomePage /> },
+  { path: "/addVideo", element: <AddVideoPage /> },
+  { path: "/edit/:videoId", element: <EditVideoPage /> },
 ];
 
 export default routes;

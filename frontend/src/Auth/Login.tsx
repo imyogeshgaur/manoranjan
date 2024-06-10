@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TextInput from "../Components/TextInput";
 import CustomLink from "../Components/CustomLink";
@@ -11,6 +11,12 @@ const Login = () => {
     password: "",
   });
 
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if(token!==null) navigate("/home")
+  }, [])
+  
   const onChangeHandler = (e: any) => {
     const { name, value } = e.target;
     setUserState({
@@ -46,18 +52,18 @@ const Login = () => {
           password: userState.password,
         }
       );
-      if(response?.dataFromBackend.message!=="Invalid Credentials !!!") {
-        localStorage.setItem("token",response?.dataFromBackend.message);
-        navigate("/home")
-      }
-      else console.log(response?.dataFromBackend.message)
+      if (response?.dataFromBackend.message !== "Invalid Credentials !!!") {
+        localStorage.setItem("token", response?.dataFromBackend.message);
+        navigate("/home");
+      } else console.log(response?.dataFromBackend.message);
     } catch (error) {
       console.log("Error occurred at login frontend: ", error);
     }
   };
   return (
-    <div className="card">
-      <h2>Login</h2>
+    <div className="card-outer">
+      <div className="card">
+        <h2>Login</h2>
         {propsArray.map((val: any, index: any) => (
           <TextInput
             key={index}
@@ -87,6 +93,7 @@ const Login = () => {
           navigateTo={"/forgetPassword"}
           className={"forgetPasswordLinkStyle"}
         />
+      </div>
     </div>
   );
 };

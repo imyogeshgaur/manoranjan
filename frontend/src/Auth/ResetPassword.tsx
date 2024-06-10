@@ -46,7 +46,6 @@ const ResetPassword = () => {
           `http://localhost:4000/api/user/resetPassword/${params.userId}`,
           {
             password: userState.password,
-
           }
         );
         if (
@@ -63,21 +62,23 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="card">
-      <h2>Reset Password</h2>
-      {propsArray.map((val: any, index: any) => (
-        <TextInput
-          key={index}
-          type={val.type}
-          name={val.name}
-          placeholder={val.placeholder}
-          value={val.value}
-          onChange={val.onChange}
-        />
-      ))}
-      <button type="submit" onClick={callResetPasswordApiFunction}>
-        Submit
-      </button>
+    <div className="card-outer">
+      <div className="card">
+        <h2>Reset Password</h2>
+        {propsArray.map((val: any, index: any) => (
+          <TextInput
+            key={index}
+            type={val.type}
+            name={val.name}
+            placeholder={val.placeholder}
+            value={val.value}
+            onChange={val.onChange}
+          />
+        ))}
+        <button type="submit" onClick={callResetPasswordApiFunction}>
+          Submit
+        </button>
+      </div>
     </div>
   );
 };

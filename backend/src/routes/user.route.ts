@@ -17,7 +17,6 @@ userRouter.post("/register",async(req:Request,res:Response)=>{
         await userController.registerUser();
     } catch (error) {
         console.log("Global Error :",error);
-
     }
 })
 
