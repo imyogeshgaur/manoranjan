@@ -19,7 +19,8 @@ class VideoController {
             const file = this.req.file?.filename;
             const token = this.req.headers.authorization;
             const video = await this.service.addVideo(body, file, token);
-            return this.res.status(200).send({ message: "Video uploaded successfully !!!", video });
+            if(video)return this.res.status(200).send({ message: "Video uploaded successfully !!!"});
+            else return this.res.status(400).send({ message: "Some error occurred"});
         } catch (error) {
             console.log("Error occurred at forget password controller : ", error);
             return this.res.status(500).send({ message: "Internal Server Error !!!" })
@@ -29,8 +30,8 @@ class VideoController {
     async getAllVideos() {
         try {
             const videos = await this.service.getAllVideos();
-            if(videos?.length==0)return this.res.status(200).send({ videos });
-            else return this.res.status(200).send({ message:"Sorry, no videos found !!!" });
+            if (videos?.length == 0) return this.res.status(400).send({ message: "Sorry, no videos found !!!" });
+            else return this.res.status(200).send({ videos });
         } catch (error) {
             console.log("Error occurred at get all Videos controller : ", error);
             return this.res.status(500).send({ message: "Internal Server Error !!!" })
