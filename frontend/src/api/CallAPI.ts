@@ -37,7 +37,7 @@ const callAPIOnButtonClick = async (type: string, url: string, parameters?: obje
                 return { statusFromBackend: response.status, dataFromBackend: data };
             }
         } else {
-            const response = await axios.delete(url, parameters);
+            const response = await axios.delete(url,{headers});
             const data = await response.data;
             return { statusFromBackend: response.status, dataFromBackend: data };
         }
