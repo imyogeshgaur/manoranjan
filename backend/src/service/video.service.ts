@@ -71,11 +71,11 @@ class VideoService {
 
     async deleteVideo(videoId: any) {
         try {
-            unlinkSync(join(process.cwd(), "/src/uploads"))
+            unlinkSync(join(process.cwd(), `/src/uploads/${videoId}.mp4`))
             const response: any = await Video.destroy(
                 { where: { videoId } }
             );
-            if (response[0]) return 1;
+            if (response) return 1;
             else return 0;
         } catch (error) {
             console.log("Error occurred in get all video service: ", error);

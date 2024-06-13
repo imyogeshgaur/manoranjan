@@ -64,6 +64,8 @@ class VideoController {
         try {
             const videoId = this.req.params.videoId;
             const response = await this.service.deleteVideo(videoId)
+            if (response) return this.res.status(200).send({ message: "Video Deleted successfully !!!" })
+            else return this.res.status(400).send({ message: "Some Error Occurred !!!" })
         } catch (error) {
             console.log("Error occurred at delete Video controller : ", error);
             return this.res.status(500).send({ message: "Internal Server Error !!!" })
