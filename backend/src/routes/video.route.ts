@@ -39,7 +39,7 @@ videoRouter.put("/edit/:videoId",authorization,async(req:Request,res:Response)=>
         console.log("Global Error :", error);
     }
 })
-videoRouter.put("/delete/:videoId",authorization,async(req:Request,res:Response)=>{
+videoRouter.delete("/delete/:videoId",authorization,async(req:Request,res:Response)=>{
     try {
         const videoController = new VideoController(req,res);
         await videoController.deleteVideo();
