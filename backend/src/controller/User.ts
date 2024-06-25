@@ -15,13 +15,11 @@ class UserController {
         try {
             const isAnEmail = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/.test(this.req.body.userNameOrEmail);
             if (isAnEmail) {
-                const tokenReturned = await this.service.loginUserWithEmail(this.req.body);
-                if (tokenReturned === -1 || tokenReturned === 0) return this.res.status(401).send({ message: "Invalid Credentials !!!" })
-                else this.res.send({ message: tokenReturned })
+                const { token, flag, status }: any = await this.service.loginUserWithEmail(this.req.body);
+                return this.res.status(status).send({ token, flag })
             } else {
-                const tokenReturned = await this.service.loginUserWithUserName(this.req.body);
-                if (tokenReturned === -1 || tokenReturned === 0) return this.res.status(401).send({ message: "Invalid Credentials !!!" })
-                else this.res.send({ message: tokenReturned })
+                const { token, flag, status }: any = await this.service.loginUserWithUserName(this.req.body);
+                return this.res.status(status).send({ token, flag })
             }
         } catch (error) {
             console.log("Error occurred at login controller : ", error);
