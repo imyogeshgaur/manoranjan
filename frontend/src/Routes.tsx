@@ -7,6 +7,7 @@ const ResetPasswordPage = lazy(() => import("./Auth/ResetPassword"));
 const HomePage = lazy(() => import("./Home/AllVideo"));
 const AddVideoPage = lazy(() => import("./Home/AddVideo"));
 const EditVideoPage = lazy(() => import("./Home/EditVideo"));
+const ViewUsersPage = lazy(() => import("./admin/ViewUsers"));
 
 const routes = [
   { path: "/", element: <LoginPage /> },
@@ -16,6 +17,7 @@ const routes = [
   { path: "/home", element: <HomePage /> },
   { path: "/addVideo", element: <AddVideoPage /> },
   { path: "/edit/:videoId", element: <EditVideoPage /> },
+  { path: "/viewUsers", element: <ViewUsersPage /> },
 ];
 
 export default routes;
