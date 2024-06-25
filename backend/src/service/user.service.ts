@@ -4,9 +4,9 @@ import { sign } from "jsonwebtoken"
 import { v4 } from "uuid"
 import { passwordResetMail } from "../utils/sendEmail";
 import { forgetPasswordTemplate } from "../template/forgotPassword";
-import {resolve} from "path";
-import {config} from "dotenv";
-config({path:resolve("./src/.env")})
+import { resolve } from "path";
+import { config } from "dotenv";
+config({ path: resolve("./src/.env") })
 
 class UserService {
 
@@ -27,12 +27,13 @@ class UserService {
                 const match = await compare(password, isUserExist.password)
                 if (match) {
                     const token = sign({ userId: isUserExist.userId }, process.env.JWT_SECRET as string);
-                    return token;
+                    if (isUserExist.role == "admin") return { token, flag: 1, status: 200 };
+                    else return { token, flag: 0, status: 200 }
                 } else {
-                    return -1;
+                    return { token: "Invalid Credentials!!!", flag: -1, status: 401 };
                 }
             } else {
-                return 0;
+                return { token: "Invalid Credentials!!!", flag: -1, status: 401 }
             }
         } catch (error) {
             console.log("Error occurred in login service: ", error)
@@ -51,12 +52,13 @@ class UserService {
                 const match = await compare(password, isUserExist.password)
                 if (match) {
                     const token = sign({ userId: isUserExist.userId }, process.env.JWT_SECRET as string);
-                    return token;
+                    if (isUserExist.role == "admin") return { token, flag: 1, status: 200 };
+                    else return { token, flag: 0, status: 200 }
                 } else {
-                    return -1;
+                    return { token: "Invalid Credentials!!!", flag: -1, status: 401 };
                 }
             } else {
-                return 0;
+                return { token: "Invalid Credentials!!!", flag: -1, status: 401 };
             }
         } catch (error) {
             console.log("Error occurred in login service: ", error)
