@@ -1,6 +1,5 @@
 import { DataTypes } from "sequelize"
 import { sequelize } from "../database/db.config"
-import { Video } from "./Video"
 
 export const User = sequelize.define("User", {
     userId: {
@@ -16,6 +15,11 @@ export const User = sequelize.define("User", {
         unique: true,
         allowNull: false
     },
+    role:{
+        type:DataTypes.STRING,
+        defaultValue:"user",
+        allowNull:false
+    },
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     password: {
@@ -24,6 +28,4 @@ export const User = sequelize.define("User", {
     }
 })
 
-User.hasMany(Video)
-Video.belongsTo(User)
 User.sync()
