@@ -12,9 +12,11 @@ const Login = () => {
   });
 
   const token = localStorage.getItem("token");
+  const flag = localStorage.getItem("flag");
 
   useEffect(() => {
-    if(token!==null) navigate("/home")
+    if(token!==null && flag) navigate("/viewUsers")
+    if(token!==null && !flag) navigate("/home")
   }, [])
   
   const onChangeHandler = (e: any) => {
@@ -52,10 +54,13 @@ const Login = () => {
           password: userState.password,
         }
       );
-      if (response?.dataFromBackend.message !== "Invalid Credentials !!!") {
-        localStorage.setItem("token", response?.dataFromBackend.message);
-        navigate("/home");
-      } else console.log(response?.dataFromBackend.message);
+     const {token,flag}:any = response?.dataFromBackend;
+     if(token!=="Invalid Credentials !!!"){
+        localStorage.setItem("token",token)
+        localStorage.setItem("flag",flag);
+        if(flag) navigate("/viewUsers")
+        if(!flag) navigate("/home")
+     }
     } catch (error) {
       console.log("Error occurred at login frontend: ", error);
     }

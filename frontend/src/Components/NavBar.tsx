@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 
 const NavBar = () => {
+  const flag: any = localStorage.getItem("flag");
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -14,13 +15,16 @@ const NavBar = () => {
     if (e.target.getAttribute("a-key") == 2) navigate("/addVideo");
     if (e.target.getAttribute("a-key") == 3) {
       localStorage.removeItem("token");
+      localStorage.removeItem("flag");
       navigate("/");
     }
   };
 
   return (
     <div className="navbar">
-      <div className="navbar-center">Welcome User</div>
+      <div className="navbar-center">
+        {flag == 1 ? "Welcome Admin" : "Welcome User"}
+      </div>
       <div className="navbar-buttons">
         <div className="dropdown">
           <i
