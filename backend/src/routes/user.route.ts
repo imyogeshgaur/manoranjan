@@ -1,40 +1,50 @@
-import {Request,Response,Router} from "express"
+import { Request, Response, Router } from "express"
 import UserController from '../controller/User'
+import seedDatabaseFunction from "../utils/initalizeDB";
 const userRouter = Router();
 
-userRouter.post("/login",async(req:Request,res:Response)=>{
+userRouter.get("/seed", async (req: Request, res: Response) => {
     try {
-        const userController = new UserController(req,res);
+        const { status, admin }: any = await seedDatabaseFunction();
+        return res.status(status).send({ admin })
+    } catch (error) {
+        console.log("Global Error :", error);
+    }
+})
+
+userRouter.post("/login", async (req: Request, res: Response) => {
+    try {
+        const userController = new UserController(req, res);
         await userController.loginUser();
     } catch (error) {
-        console.log("Global Error :",error);
+        console.log("Global Error :", error);
     }
 })
 
-userRouter.post("/register",async(req:Request,res:Response)=>{
+userRouter.post("/register", async (req: Request, res: Response) => {
     try {
-        const userController = new UserController(req,res);
+        const userController = new UserController(req, res);
         await userController.registerUser();
     } catch (error) {
-        console.log("Global Error :",error);
+        console.log("Global Error :", error);
     }
 })
 
-userRouter.post("/forgetPassword",async(req:Request,res:Response)=>{
+userRouter.post("/forgetPassword", async (req: Request, res: Response) => {
     try {
-        const userController = new UserController(req,res);
+        const userController = new UserController(req, res);
         await userController.forgetPassword();
     } catch (error) {
-        console.log("Global Error :",error);
+        console.log("Global Error :", error);
     }
 })
 
-userRouter.put("/resetPassword/:userId",async(req:Request,res:Response)=>{
+userRouter.put("/resetPassword/:userId", async (req: Request, res: Response) => {
     try {
-        const userController = new UserController(req,res);
+        const userController = new UserController(req, res);
         await userController.resetPassword();
     } catch (error) {
-        console.log("Global Error :",error);
+        console.log("Global Error :", error);
     }
 })
 
